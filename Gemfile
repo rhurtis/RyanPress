@@ -66,3 +66,7 @@ group :development do
 end
 
 gem 'capybara'
+
+gem 'simplecov', require: false, group: :test
+
+gem 'simplecov-json', :require => false
