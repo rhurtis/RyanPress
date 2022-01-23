@@ -50,4 +50,12 @@ jobs:
           PGUSER: postgres
           PGPASSWORD: postgres
         run: bin/rails spec
+      
+      - name: Upload Coverage Reports
+        uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage/.resultset.json
+          fail_ci_if_error: true
+          verbose: true
 

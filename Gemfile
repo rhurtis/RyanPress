@@ -69,4 +69,5 @@ gem 'capybara'
 
 gem 'simplecov', require: false, group: :test
 
-gem 'simplecov-json', :require => false
+gem 'codecov', :require => false, :group => :test
+
