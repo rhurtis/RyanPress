@@ -61,7 +61,7 @@ jobs:
         run: bin/rails spec
       
       - name: Upload Coverage Reports
-        uses: codecov/codecov-action@v2
+        uses: codecov/codecov-action@v2.1.0
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           files: ./coverage/.resultset.json
