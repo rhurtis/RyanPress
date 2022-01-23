@@ -18,9 +18,10 @@
 require 'simplecov'
 SimpleCov.start
 
-# Formatting for CodeCov
-require 'simplecov-json'
-SimpleCov.formatter = SimpleCov::Formatter::JSONFormatter
+# Formatting for codecov
+require 'codecov'
+SimpleCov.formatter = SimpleCov::Formatter::Codecov
+
 
 
 
