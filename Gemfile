@@ -71,3 +71,4 @@ gem 'simplecov', require: false, group: :test
 
 gem 'codecov', :require => false, :group => :test
 
+gem 'simplecov-cobertura'
