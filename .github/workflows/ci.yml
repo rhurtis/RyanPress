@@ -64,7 +64,7 @@ jobs:
         uses: codecov/codecov-action@v2.1.0
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: ./coverage/coverage.xml
+          files: ./coverage.
           fail_ci_if_error: true
           verbose: true
 
