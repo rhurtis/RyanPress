@@ -18,17 +18,10 @@
 require 'simplecov'
 SimpleCov.start
 
-# execute the following only when running Github Actions CI.
-if ENV['CI'] == true
-  # Formatting for codecov
-  require 'codecov'
-  SimpleCov.formatter = SimpleCov::Formatter::Codecov
-  # require 'simplecov-json'
-  # SimpleCov.formatter = SimpleCov::Formatter::JSONFormatter
+require 'simplecov-cobertura'
+SimpleCov.formatter = SimpleCov::Formatter::CoberturaFormatter
 
-  # require 'simplecov-cobertura'
-  # SimpleCov.formatter = SimpleCov::Formatter::CoberturaFormatter
-end
+
 
 
 

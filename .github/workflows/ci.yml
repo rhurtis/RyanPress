@@ -66,7 +66,7 @@ jobs:
         uses: codecov/codecov-action@v2.1.0
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          files: /home/runner/work/RyanPress/RyanPress/coverage/.resultset.json
+          directory: /home/runner/work/RyanPress/RyanPress/coverage/
           fail_ci_if_error: true
           verbose: true
 
