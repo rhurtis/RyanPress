@@ -67,7 +67,6 @@ jobs:
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
           directory: /home/runner/work/RyanPress/RyanPress/coverage/
-#          files: /home/runner/work/RyanPress/RyanPress/coverage/.resultset.json
           fail_ci_if_error: true
           verbose: true
 
