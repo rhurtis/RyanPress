@@ -1,0 +1,7 @@
+<h1> List of Articles </h1>
+
+<% @article.each do |article| %>
+    <h4> Title: <%= link_to "#{article.title}" , article %> </h4>
+
+    <% end %>
+
