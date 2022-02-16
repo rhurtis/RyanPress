@@ -3,7 +3,6 @@ require 'rails_helper'
 RSpec.describe "Articles", type: :request do
 
   describe "GET /articles" do
-    Article.create(title:'test', body: 'test')
     it "responds with a status code of 200" do
       get articles_path
       expect(response).to have_http_status(200)
@@ -21,7 +20,7 @@ RSpec.describe "Articles", type: :request do
   describe "GET /articles/:id" do
     context "successfully finds article" do
       it "and responds with a status code of 200" do
-        article = Article.create(title: 'test 1', body: 'test body')
+        article = create(:article_with_title_and_body)
         get article_url(article)
         expect(response).to have_http_status(200)
       end
@@ -40,11 +39,11 @@ RSpec.describe "Articles", type: :request do
   describe "POST /articles" do
     context "with valid parameters" do
       it "creates a new article" do
-        expect {post articles_url, params: {article: {title: 'test1234', body: 'test'} }}.to change(Article, :count).by(1)
+        expect {post articles_url, params: {article: attributes_for(:article_with_title_and_body)}}.to change(Article, :count).by(1)
       end
 
       it "redirects to the created article" do
-        post articles_url, params: {article: {title: 'test1234', body: 'test'}}
+        post articles_url, params: {article: attributes_for(:article_with_title_and_body)}
         expect(response).to redirect_to(article_url(Article.last))
       end
     end
