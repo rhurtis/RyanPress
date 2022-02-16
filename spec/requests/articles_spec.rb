@@ -1,0 +1,53 @@
+require 'rails_helper'
+
+RSpec.describe "Articles", type: :request do
+
+  describe "GET /articles" do
+    Article.create(title:'test', body: 'test')
+    it "responds with a status code of 200" do
+      get articles_path
+      expect(response).to have_http_status(200)
+    end
+  end
+
+  describe "GET /articles/new" do
+    it "responds with a status code of 200" do
+      get new_article_path
+      expect(response).to have_http_status(200)
+    end 
+  end
+
+
+  describe "GET /articles/:id" do
+    context "successfully finds article" do
+      it "and responds with a status code of 200" do
+        article = Article.create(title: 'test 1', body: 'test body')
+        get article_url(article)
+        expect(response).to have_http_status(200)
+      end
+    end
+
+    #TODO add a 404 page.
+    context "fails to find an invalid article" do
+      it "and responds with a status code of 404" do
+        expect{get "/articles/invalid_id"}.to raise_exception(ActiveRecord::RecordNotFound)
+      end
+    end
+  end
+
+ 
+
+  describe "POST /articles" do
+    context "with valid parameters" do
+      it "creates a new article" do
+        expect {post articles_url, params: {article: {title: 'test1234', body: 'test'} }}.to change(Article, :count).by(1)
+      end
+
+      it "redirects to the created article" do
+        post articles_url, params: {article: {title: 'test1234', body: 'test'}}
+        expect(response).to redirect_to(article_url(Article.last))
+      end
+    end
+  end
+
+end
