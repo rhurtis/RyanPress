@@ -9,12 +9,12 @@ class ArticlesController < ApplicationController
         if @article.save
             redirect_to article_path(@article)
         else
-            render :new
+            render :new, status: :unprocessable_entity
         end
     end
 
     def show
-        @article = Article.find(params[:id])
+        @article = Article.find_by(slug: params[:slug])
     end
 
     def index
@@ -22,11 +22,11 @@ class ArticlesController < ApplicationController
     end
 
     def edit
-        @article = Article.find(params[:id])
+        @article = Article.find_by(slug: params[:slug])
     end
 
     def update
-        @article = Article.find(params[:id])
+        @article = Article.find_by(slug: params[:slug])
 
         if @article.update(article_params)
             redirect_to @article
@@ -36,7 +36,7 @@ class ArticlesController < ApplicationController
     end
 
     def destroy
-        @article = Article.find(params[:id])
+        @article = Article.find_by(slug: params[:slug])
 
         @article.destroy
 
@@ -48,4 +48,5 @@ class ArticlesController < ApplicationController
         params.require(:article).permit(:title, :body)
     end
     
+
 end
