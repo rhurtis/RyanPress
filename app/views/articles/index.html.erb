@@ -5,3 +5,14 @@
 
     <% end %>
 
+<div>
+    <%= link_to "Previous Page", articles_path(page: @page - 1) %>
+    |
+    <%= link_to "Next Page", articles_path(page: @page + 1) %>
+</div>
+
+<div>
+    <%= link_to "First Page", articles_path(page: 0) %>
+    |
+    <%= link_to "Last Page", articles_path(page: @last_page)%>
+</div>
