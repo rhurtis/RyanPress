@@ -78,3 +78,4 @@ gem 'simplecov-cobertura'
 gem 'pry-byebug'
 
 gem 'pry-rails'
+gem "tailwindcss-rails", "~> 2.0"
