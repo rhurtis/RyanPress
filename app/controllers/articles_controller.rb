@@ -1,5 +1,7 @@
 class ArticlesController < ApplicationController
 
+    ARTICLES_PER_PAGE = 8
+
     def new
         @article = Article.new
     end
@@ -18,7 +20,28 @@ class ArticlesController < ApplicationController
     end
 
     def index
-        @article = Article.all
+    
+
+        @last_page = (Article.all.count / ARTICLES_PER_PAGE).floor
+        
+        #fetch finds the value of the page query parameter, if there is none supplied use 0.
+        page_from_params = params.fetch(:page, 0).to_i
+        
+        #error handling to handle negative page/offset or when offset is greater than the last page.
+        if (page_from_params > -1) and (page_from_params < @last_page + 1)
+        
+            @page = page_from_params
+        elsif page_from_params < 0
+            @page = 0
+
+        elsif page_from_params > @last_page
+            @page = @last_page
+        end
+
+
+        #offset is the starting point of the set of articles. 
+        @article = Article.offset(@page * ARTICLES_PER_PAGE).limit(ARTICLES_PER_PAGE)
+
     end
 
     def edit
