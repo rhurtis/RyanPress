@@ -53,6 +53,7 @@ jobs:
           PGPASSWORD: postgres
         run: |
           bin/rails db:setup
+          bundle exec rake assets:precompile
 
       - name: Run Tests
         env:
