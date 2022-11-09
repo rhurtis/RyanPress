@@ -13,8 +13,8 @@ class ArticlesController < ApplicationController
         end
     end
 
-    def show
-        @article = Article.find_by(slug: params[:slug])
+    def show               
+        @article = Article.custom_find_by_articles(slug: params[:slug]) || render_404
     end
 
     def index
@@ -41,6 +41,16 @@ class ArticlesController < ApplicationController
         @article.destroy
 
         redirect_to articles_path, status: :see_other 
+    end
+
+    def slug_checker(slug)   
+        # check the db if that slug exists... 
+        record_check = Article.find_by(slug: slug)
+    end
+
+
+    def render_404
+        render file: 'public/404.html', layout: false, status: :not_found
     end
 
     private
