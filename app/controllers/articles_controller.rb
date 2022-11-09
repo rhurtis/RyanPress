@@ -11,12 +11,12 @@ class ArticlesController < ApplicationController
         if @article.save
             redirect_to article_path(@article)
         else
-            render :new
+            render :new, status: :unprocessable_entity
         end
     end
 
-    def show
-        @article = Article.find(params[:id])
+    def show               
+        @article = Article.custom_find_by_articles(slug: params[:slug]) || render_404
     end
 
     def index
@@ -45,11 +45,11 @@ class ArticlesController < ApplicationController
     end
 
     def edit
-        @article = Article.find(params[:id])
+        @article = Article.find_by(slug: params[:slug])
     end
 
     def update
-        @article = Article.find(params[:id])
+        @article = Article.find_by(slug: params[:slug])
 
         if @article.update(article_params)
             redirect_to @article
@@ -59,11 +59,21 @@ class ArticlesController < ApplicationController
     end
 
     def destroy
-        @article = Article.find(params[:id])
+        @article = Article.find_by(slug: params[:slug])
 
         @article.destroy
 
         redirect_to articles_path, status: :see_other 
+    end
+
+    def slug_checker(slug)   
+        # check the db if that slug exists... 
+        record_check = Article.find_by(slug: slug)
+    end
+
+
+    def render_404
+        render file: 'public/404.html', layout: false, status: :not_found
     end
 
     private
@@ -71,4 +81,5 @@ class ArticlesController < ApplicationController
         params.require(:article).permit(:title, :body)
     end
     
+
 end

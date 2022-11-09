@@ -19,15 +19,4 @@ RSpec.describe Article, type: :model do
             expect(article.errors[:body]).to include("can't be blank")
         end
     end
-
-    it "has a unique title" do
-        Article.create(title: "article1", body: "article1")
-
-        article2 = Article.new(title: "article1", body: "article2")
-
-        article2.valid?
-
-        expect(article2.errors[:title]).to include("has already been taken")
-    end
-
 end
