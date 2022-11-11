@@ -19,9 +19,9 @@ export default class extends Controller {
       });
   }
   
-  // disconnect() {
-  //  // tinymce.activeEditor.destroy()
-  // }
+  disconnect() {
+    tinymce.activeEditor.destroy()
+  }
 }
 
 /*
