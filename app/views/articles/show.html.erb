@@ -1,9 +1,12 @@
-<h1> <%= @article.title %> </h1>
-<p> <%= raw @article.body %> </p>
+<div style="display: flex; flex-direction: column; padding: 1rem; margin: auto;">
+    <h1 style="margin-bottom: 1rem;"> <%= @article.title %> </h1>
 
-<ul>
-    <li><%= link_to "Edit", edit_article_path(@article) %></li>
-    <li><%= link_to "Delete", article_path(@article), data: {
-        turbo_method: :delete
-    } %> </li>
-</ul>
+    <p style="margin-bottom: 1rem;"> <%= sanitize @article.body %> </p>
+
+    <ul>
+        <li><%= link_to "Edit", edit_article_path(@article) %></li>
+        <li><%= link_to "Delete", article_path(@article), data: {
+            turbo_method: :delete
+        } %> </li>
+    </ul>
+</div>

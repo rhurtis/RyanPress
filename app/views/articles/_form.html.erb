@@ -12,7 +12,10 @@
     <%= f.text_field :title %>
 
     <%= f.label :body %>
-    <%= f.text_area :body %>
+    <div data-controller="tinymce">
+        <%= f.text_area :body, class: "tinymce" %>
+    </div>
+    
 
     <%= f.submit %>
 <% end %>
