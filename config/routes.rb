@@ -4,4 +4,6 @@ Rails.application.routes.draw do
   get "/", to: "main#index"
 
   resources :articles, param: :slug
+
+  resources :users
 end

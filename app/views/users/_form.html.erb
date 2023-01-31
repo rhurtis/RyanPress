@@ -1,0 +1,18 @@
+
+<% if user.errors.any? %>
+    <ul>
+        <% user.errors.each do | error | %>
+            <li> <%= error.full_message %> </li>
+        <% end %>
+    </ul>
+<% end %>
+<%= form_for user do | f | %>
+
+    <%= f.label :email %>
+    <%= f.email_field :email %>
+
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+    
+    <%= f.submit %>
+<% end %>
