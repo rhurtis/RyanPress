@@ -3,4 +3,6 @@ class User < ApplicationRecord
     validates :email, presence: true, uniqueness: true
     encrypts :password
     validates  :password, presence: true
+    has_one :profile
 end
+
