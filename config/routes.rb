@@ -6,4 +6,6 @@ Rails.application.routes.draw do
   resources :articles, param: :slug
 
   resources :users
+
+  resources :profiles, only: [:new, :index]
 end
