@@ -3,7 +3,8 @@ class AddingProfiles < ActiveRecord::Migration[7.0]
     create_table :profiles do |t|
       t.string :username
       t.timestamps
-      t.belongs_to :users
+      t.references :user
+      
     end 
     
   end
