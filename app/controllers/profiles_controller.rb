@@ -11,7 +11,12 @@ class ProfilesController < ApplicationController
         else
             render :new, status: :unprocessable_entity
         end
-      end
+    end
+
+    def show
+        puts 'profiles_id' , params[:id]
+        @profile = Profile.find(params[:id])
+    end
 
       private
       def profile_params
