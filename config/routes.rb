@@ -9,5 +9,5 @@ Rails.application.routes.draw do
 
   resources :users
 
-  resources :profiles, only: [:new, :index, :create]
+  resources :profiles, only: [:new, :index, :create, :show]
 end
