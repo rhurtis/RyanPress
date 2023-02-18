@@ -26,10 +26,11 @@ RSpec.describe "Articles", type: :request do
       end
     end
 
-    #TODO add a 404 page.
+    
     context "fails to find an invalid article" do
       it "and responds with a status code of 404" do
-        expect{get "/articles/invalid_id"}.to raise_exception(ActiveRecord::RecordNotFound)
+        get "/articles/invalid_id"
+        expect(response).to have_http_status(404)
       end
     end
   end
