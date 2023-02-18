@@ -1,7 +1,8 @@
 class User < ApplicationRecord
-   # encrypts :email, deterministic: true, downcase: true
+    has_secure_password
+
     validates :email, presence: true, uniqueness: true
-  #  encrypts :password
+  
     validates  :password, presence: true
     has_one :profile
 end
