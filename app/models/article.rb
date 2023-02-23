@@ -44,7 +44,6 @@ class Article < ApplicationRecord
        number_check = check_string_for_numbers(potential_article_id)
 
        if number_check == false
-        puts('string is not only numbers')
         return false
        end
        
