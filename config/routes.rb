@@ -11,5 +11,5 @@ Rails.application.routes.draw do
 
   resources :profiles, only: [:new, :index, :create, :show]
 
-  resources :sessions, only: [:create]
+  resources :sessions, only: [:create, :new]
 end

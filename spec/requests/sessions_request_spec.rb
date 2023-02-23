@@ -10,6 +10,16 @@ RSpec.describe "Session", type: :request do
 
             expect(session[:user_id]).to eq(test_user.id)
         end
+        #it "takes incorrect user credentials and p"
+
+    end
+
+    describe "GET /sessions/new" do
+        it "renders the login page and responds with a status code of 200" do
+            get "/sessions/new"
+            expect(response).to have_http_status(200)
+            expect(response.body).to include("Login Page")
+        end 
     end
 
 end
