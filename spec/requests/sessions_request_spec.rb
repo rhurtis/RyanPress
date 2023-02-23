@@ -10,7 +10,7 @@ RSpec.describe "Session", type: :request do
 
             expect(session[:user_id]).to eq(test_user.id)
         end
-        #it "takes incorrect user credentials and p"
+        
 
     end
 
