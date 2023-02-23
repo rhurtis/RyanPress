@@ -10,4 +10,6 @@ Rails.application.routes.draw do
   resources :users
 
   resources :profiles, only: [:new, :index, :create, :show]
+
+  resources :sessions, only: [:create]
 end
