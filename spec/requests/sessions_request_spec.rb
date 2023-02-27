@@ -3,22 +3,32 @@ require 'rails_helper'
 RSpec.describe "Session", type: :request do
 
     describe  'POST /sessions' do
-        it "takes correct user credentials, creates a session and redirects to the home page" do
-            test_user = User.create(email: "ryan@example.com", password: "123456")
-
-            post "/sessions", :params => {email: "ryan@example.com" , password: "123456"}
-
-            expect(session[:user_id]).to eq(test_user.id)
-            expect(response).to redirect_to "/"
+        context "with valid parameters" do
+            it "creates a session and redirects to the home page" do
+                test_user = User.create(email: "ryan@example.com", password: "123456")
+    
+                post "/sessions", :params => {email: "ryan@example.com" , password: "123456"}
+    
+                expect(session[:user_id]).to eq(test_user.id)
+                expect(response).to redirect_to "/"
+            end
         end
+        
+        context "with invalid parameters" do
+            it "re-renders the sessions new template and shows an error message" do
+                post "/sessions", :params => {email: "ryan@example.com" , password: "123456"}
+    
+                expect(session[:user_id]).to eq(nil)
+                expect(response).to redirect_to "/sessions/new"
 
-        it "rerenders the sessions/new template when the users credentials are incorrect" do
-            post "/sessions", :params => {email: "ryan@example.com" , password: "123456"}
+                follow_redirect!
 
-            expect(session[:user_id]).to eq(nil)
-            expect(response).to redirect_to "/sessions/new"
+                expect(response.body).to include("Incorrect Credentials: Please Try Again")
+            end
         end
     end
+
+    
 
     describe "GET /sessions/new" do
         it "renders the login page and responds with a status code of 200" do

@@ -1,12 +1,13 @@
 <h1>Login Page</h1>
 
+<%= flash[:alert] %>
+
 <%= form_with url: sessions_path do |form| %>
     <%= form.label :email %>
-    <%= form.email_field :email %>
+    <%= form.email_field :email, class: "form-control" %>
     
     <%= form.label :password %>
-    <%= form.password_field :password %>
+    <%= form.password_field :password, class: "form-control" %>
     
     <%= form.submit "Login" %>
-
 <% end %>
