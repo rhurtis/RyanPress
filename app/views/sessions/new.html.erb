@@ -1,20 +1,12 @@
 <h1>Login Page</h1>
 
-
-
-<%= form_tag sessions_path do %>
-    <div>
-        <%= label_tag :email %>
-        <%= text_field_tag :email, params[:email] %>
-    </div>
-
-    <div>
-        <%= label_tag :password %>
-        <%= text_field_tag :password %>
-    </div>
-
-    <div>
-        <%= submit_tag "Login" %>
-    </div>
+<%= form_with url: sessions_path do |form| %>
+    <%= form.label :email %>
+    <%= form.email_field :email %>
     
+    <%= form.label :password %>
+    <%= form.password_field :password %>
+    
+    <%= form.submit "Login" %>
+
 <% end %>
